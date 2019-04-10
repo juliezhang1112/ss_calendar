@@ -1,0 +1,477 @@
+<!doctype html>
+<html class="no-js" lang=""> 
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>北大软微日程管理系统</title>
+    <meta name="description" content="北大软微日程管理系统">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/static/assets/css/normalize.css">
+    <link rel="stylesheet" href="/static/assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/assets/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/static/assets/css/themify-icons.css">
+    <link rel="stylesheet" href="/static/assets/css/pe-icon-7-filled.css">
+    <link rel="stylesheet" href="/static/assets/css/flag-icon.min.css">
+    <link rel="stylesheet" href="/static/assets/css/cs-skin-elastic.css">
+    <link rel="stylesheet" href="/static/assets/css/lib/datatable/dataTables.bootstrap.min.css">
+    <link rel="stylesheet" href="/static/assets/css/style.css">
+
+</head>
+<body>
+    <!-- Left Panel -->
+    <aside id="left-panel" class="left-panel">
+        <nav class="navbar navbar-expand-sm navbar-default">
+            <div id="main-menu" class="main-menu collapse navbar-collapse">
+                <ul class="nav navbar-nav">       
+                    <li class="menu-title">日程查询统计</li><!-- /.menu-title -->
+                    <li class="menu-item-has-children">
+                        <a href="../index/index.html"> <i class="menu-icon fa fa-search-plus"></i>日程查询</a>
+                    </li>
+                    <li class="menu-item-has-children">
+                        <a href="#"> <i class="menu-icon fa fa-bar-chart-o"></i>日程统计 </a>
+                    </li> 
+
+
+                    <li class="menu-title">日程管理配置</li><!-- /.menu-title -->
+                    <li class="menu-item-has-children">
+                        <a href="time.html"> <i class="menu-icon fa fa-calendar"></i>时间段管理</a>
+                    </li>
+                    <li class="menu-item-has-children">
+                        <a href="area.html"> <i class="menu-icon fa ti-location-pin"></i>地点管理 </a>
+                    </li>
+                    <li class="menu-item-has-children active">
+                        <a href="{:url('index/admindefault/gotoScheduleItem')}"> <i class="menu-icon fa fa-book"></i>事项管理</a>
+                    </li>
+                     <li class="menu-item-has-children">
+                        <a href="#"> <i class="menu-icon fa fa-folder-open-o"></i>白名单管理 </a>
+                    </li>                     
+                     <li class="menu-item-has-children">
+                        <a href="#"> <i class="menu-icon fa fa-arrows"></i> 
+                        设置可维护日程范围</a>
+                    </li>     
+                     <li class="menu-item-has-children">
+                        <a href="#"> <i class="menu-icon fa fa-calendar-o"></i> 
+                        配置工作日</a>
+                    </li> 
+                     <li class="menu-item-has-children">
+                        <a href="#"> <i class="menu-icon fa fa-square-o"></i> 
+                        缺省日程维护</a>                         
+
+                    <li class="menu-title">用户管理</li><!-- /.menu-title -->
+                    <li class="menu-item-has-children">
+                        <a href="user_base.html"> <i class="menu-icon fa fa-user"></i>基础管理 </a>
+                    </li> 
+                     <li class="menu-item-has-children">
+                        <a href="#"> <i class="menu-icon fa fa-building-o"></i>部门管理 </a>
+                    </li>  
+                     <li class="menu-item-has-children">
+                        <a href="#"> <i class="menu-icon fa fa-lemon-o"></i>职务管理 </a>
+                    </li>                                             
+
+                    <li class="menu-title">管理员管理</li> 
+                     <li class="menu-item-has-children">
+                        <a href="#"> <i class="menu-icon fa fa-group"></i>基础管理 </a>
+                    </li>                      
+                     <li class="menu-item-has-children">
+                        <a href="#"> <i class="menu-icon fa fa-credit-card"></i>角色管理 </a>
+                    </li>                                           
+                     <li class="menu-item-has-children">
+                        <a href="#"> <i class="menu-icon fa fa-sitemap"></i>权限管理 </a>
+                    </li>                     
+
+                    <li class="menu-title">日志管理</li><!-- /.menu-title -->
+                    <li class="menu-item-has-children">
+                        <a href="log.html"> <i class="menu-icon fa fa-search"></i>日志查询</a>
+                    </li>    
+
+                    <li class="menu-title">消息管理</li><!-- /.menu-title -->
+                    <li class="menu-item-has-children">
+                        <a href="#"> <i class="menu-icon fa fa-comment-o"></i>消息模板</a>
+                    </li>                                   
+                </ul>
+            </div><!-- /.navbar-collapse -->
+        </nav>
+    </aside>
+    <!-- /#left-panel -->
+    <!-- Right Panel -->
+    <div id="right-panel" class="right-panel">
+        <!-- Header-->
+        <header id="header" class="header">
+            <div class="top-left">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="../index/index.html"><img src="/static/images/logo.png" alt="Logo"></a>
+                    <a class="navbar-brand hidden" href="../index/index.html"><img src="/static/images/logo2.png" alt="Logo"></a>
+                    <a id="menuToggle" class="menutoggle"><i class="fa fa-bars"></i></a>
+                </div>
+            </div>
+            <div class="top-right">
+                <div class="header-menu">
+                    <div class="header-left">
+                        <button class="search-trigger"><i class="fa fa-search"></i></button>
+                        <div class="form-inline">
+                            <form class="search-form">
+                                <input class="form-control mr-sm-2" type="text" placeholder="Search ..." aria-label="Search">
+                                <button class="search-close" type="submit"><i class="fa fa-close"></i></button>
+                            </form>
+                        </div>
+                    
+                    </div>
+
+                    <div class="user-area dropdown float-right">
+                        <a href="#" class="dropdown-toggle active" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <img class="user-avatar rounded-circle" src="/static/images/admin.jpg" alt="User Avatar">
+                        </a>
+
+                        <div class="user-menu dropdown-menu">
+                            <a class="nav-link" href="page-login.html"><i class="fa fa-power-off"></i>退出</a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </header>
+        <!-- /#header -->
+        <!-- Content -->
+        <div class="content">
+            <div class="animated fadeIn">                
+                <div class="row">
+                    <div class="col-xl-12">
+                        <div class="card">
+                            <div class="card-body">
+                                 <h4 class="box-title">日程事项&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                    <button type="submit" id="add" class="btn btn-success btn-sm" data-toggle="modal" data-target="#smallmodal1" >添加事项</button>
+                                 </h4>
+                            </div>
+                            <div class="card-body--">
+                                <div class="table-stats">
+                                    <table id="bootstrap-data-table" class="table">
+                                        <thead>
+                                            <tr>
+                                                <th class="serial">序号</th>
+                                                <th>事项ID</th>
+                                                <th>事项描述</th>
+                                                <th>操作</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                        {notempty name="scheduleitems"}
+                                            {foreach name="scheduleitems" item="scheduleitem"}
+                                            <tr>
+                                                <td class="serial">{$key+1}</td>
+                                                <td>  <span class="product">{$scheduleitem['id']}</span></td>
+                                                <td>  <span class="product">{$scheduleitem['name']}</span></td>
+                                                <td>
+                                                    <button type="button" class="btn btn-primary btn-sm mb-1" data-id="{$scheduleitem.id}" data-des="{$scheduleitem.name}" data-toggle="modal" data-target="#smallmodal2">
+                                                        <i class="fa fa-magic"></i>&nbsp;编辑
+                                                    </button>
+                                                    <button type="button" class="btn btn-danger btn-sm mb-1"  data-id="{$scheduleitem.id}" data-toggle="modal" data-target="#smallmodal3">
+                                                        <i class="fa fa-exclamation"></i>&nbsp;删除
+                                                    </button>                                                                                    
+                                                </td>                                             
+                                            </tr>
+                                            {/foreach}
+                                        {/notempty}
+                                        </tbody>                                
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal fade" id="smallmodal2" tabindex="-1" role="dialog" aria-labelledby="smallmodalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-sm" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="scrollmodalLabel">编辑事项</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <p>
+                                        <div class="form-group">
+                                            <div class="input-group">
+                                                <div class="input-group-addon">
+                                                    <i class="fa fa-check-square-o"></i>
+                                                </div>
+                                                <input type="text" id="itemide" name="itemide" value="01" class="form-control" disabled="disabled">
+                                            </div>                                              
+                                        </div>   
+                                        <div class="form-group">
+                                            <div class="input-group">
+                                                <div class="input-group-addon">
+                                                    <i class="fa fa-pencil-square-o"></i>
+                                                </div>
+                                                <input type="text" id="itemdese" name="itemdese" value="开会" class="form-control">
+                                            </div>                                              
+                                        </div>
+                                        <div class="form-group">
+                                           <div id="msg2"></div>
+                                        </div>
+                                    </p>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
+                                    <button type="button" class="btn btn-success" id="submit_modify" data-dismiss="modal">确认</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div> 
+                    <div class="modal fade" id="smallmodal1" tabindex="-1" role="dialog" aria-labelledby="smallmodalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-sm" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title">添加事项</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <p>
+                                        <div class="form-group">
+                                            <div class="input-group">
+                                                <div class="input-group-addon">
+                                                    <i class="fa fa-pencil-square-o"></i>
+                                                </div>
+                                                <input type="text" id="itemdesa" name="itemdescription" placeholder="事项描述" class="form-control">
+                                            </div>                                              
+                                        </div>        
+                                    </p>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
+                                    <button type="button" class="btn btn-success" id="submit_add" data-dismiss="modal" data-target="modal">确认</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal fade" id="smallmodal3" tabindex="-1" role="dialog" aria-labelledby="smallmodalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-sm" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title">删除事项</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <p>
+                                    <div class="form-group">
+                                            确定删除吗?
+                                    </div>
+                                    </p>
+                                    <div class="form-group">
+                                        <div id="msg3"></div>
+                                    </div>
+                                    <div>
+                                        <input id="id"  type="hidden">
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
+                                    <button type="button" class="btn btn-success" id="submit_delete" data-dismiss="modal">确认</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 模态框（Modal） -->
+                    <div class="modal fade" id="smallmodal4" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                    <h4 class="modal-title" id="myModalLabel">模态框（Modal）标题</h4>
+                                </div>
+                                <div class="modal-body">点击关闭按钮检查事件功能。</div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                                    <button type="button" class="btn btn-primary">提交更改</button>
+                                </div>
+                            </div><!-- /.modal-content -->
+                        </div><!-- /.modal-dialog -->
+                    </div>
+                    <!-- /.modal -->
+                    <!--<div class="modal fade" id="smallmodal4" tabindex="-1" role="dialog" aria-labelledby="smallmodalLabel">-->
+                        <!--<div class="modal-dialog modal-sm" role="document">-->
+                            <!--<div class="modal-content">-->
+                                <!--<div class="modal-header">-->
+                                    <!--<h5 class="modal-title" id="hintMessageLabel"></h5>-->
+                                    <!--<button type="button" class="close" data-dismiss="modal" aria-label="Close">-->
+                                        <!--<span aria-hidden="true">&times;</span>-->
+                                    <!--</button>-->
+                                <!--</div>-->
+                                <!--<div class="modal-body" id="hintMessage">-->
+                                    <!--<h6></h6>-->
+                                <!--</div>-->
+                                <!--<div class="modal-footer">-->
+                                    <!--<button type="button" class="btn btn-success" id="submit_sure">确认</button>-->
+                                <!--</div>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                    <!--</div>-->
+
+
+                    <!--&lt;!&ndash;消息提示&ndash;&gt;-->
+                    <!--<div class="modal fade" id="hintMessageModal" tabindex="-1" role="dialog" data-backdrop="static" aria-labelledby="myModalLabel" aria-hidden="true">-->
+                        <!--<div class="modal-dialog">-->
+                            <!--<div class="modal-content">-->
+                                <!--<div class="modal-header">-->
+                                    <!--<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>-->
+                                    <!--<h4 class="modal-title" id="hintMessageLabel"></h4>-->
+                                <!--</div>-->
+                                <!--<div id="hintMessage" class="modal-body">-->
+                                    <!--<h5></h5>-->
+                                <!--</div>-->
+                                <!--<div class="modal-footer">-->
+                                    <!--<button id="messageOk" type="button" class="btn btn-success" data-dismiss="modal">确定</button>-->
+                                <!--</div>-->
+                            <!--</div>&lt;!&ndash; /.modal-content &ndash;&gt;-->
+                        <!--</div>&lt;!&ndash; /.modal-dialog &ndash;&gt;-->
+                    <!--</div>&lt;!&ndash; /.modal &ndash;&gt;-->
+
+                </div>
+            </div>
+            <!-- .animated -->
+        </div>
+        <!-- /.content -->
+        <div class="clearfix"></div>
+        <!-- Footer -->
+        <footer class="site-footer">
+            <div class="footer-inner bg-white">
+                <div class="row">
+                    <div class="col-sm-6">
+                        Copyright &copy; 2019 SSPKU Admin. 友情链接 <a href="http://www.ss.pku.edu.cn/" target="_blank" title="北京大学软件与微电子学院">北京大学软件与微电子学院</a> 
+                    </div>
+                    <div class="col-sm-6 text-right"> Designed by SunJiajing
+                    </div>
+                </div>
+            </div>
+        </footer>
+        <!-- /.site-footer -->
+    </div>
+    <!-- /#right-panel -->
+
+    <!-- Scripts -->
+    <script src="/static/assets/js/vendor/jquery-2.1.4.min.js"></script>
+    <script src="/static/assets/js/popper.min.js"></script>
+    <script src="/static/assets/js/jquery.matchHeight.min.js"></script>
+    <script src="/static/assets/js/bootstrap.min.js"></script>
+    <script src="/static/assets/js/main.js"></script>
+    <script src="/static/assets/js/lib/data-table/datatables.min.js"></script>
+    <script src="/static/assets/js/lib/data-table/dataTables.bootstrap.min.js"></script>
+    <script src="/static/assets/js/lib/data-table/dataTables.buttons.min.js"></script>
+    <script src="/static/assets/js/lib/data-table/buttons.bootstrap.min.js"></script>
+    <script src="/static/assets/js/lib/data-table/jszip.min.js"></script>
+    <script src="/static/assets/js/lib/data-table/vfs_fonts.js"></script>
+    <script src="/static/assets/js/lib/data-table/buttons.html5.min.js"></script>
+    <script src="/static/assets/js/lib/data-table/buttons.print.min.js"></script>
+    <script src="/static/assets/js/lib/data-table/buttons.colVis.min.js"></script>
+    <script src="/static/assets/js/init/datatables-init.js"></script>
+    <script type="text/javascript">
+        $('#smallmodal1').on('show.bs.modal', function (e) {
+            $("#msg1").html("");
+        });
+        $('#smallmodal4').on('show.bs.modal', function (e) {
+            $("#myModalLabel").html("模态框的标题");
+        });
+        // $('#add').click(function () {
+        //     $("#smallmodal1").modal(true,true,true,false);
+        // });
+        $("#submit_add").on("click", function(){
+            var des = $("#itemdesa").val();
+            //$("#smallmodal1").modal(true,true,true,false);
+            $.ajax({
+                url:"{:url('index/admindefault/addscheduleitem')}",
+                type:"POST",
+                data:{"des":des},
+                dataType: "json",
+                success: function (data) {
+                    console.log(data);
+                    // $("#smallmodal4").modal('toggle');
+                    //$("#smallmodal4").modal({show:true});
+                    alert(data.msg);
+                    window.location.reload();
+                }
+            })
+        });
+
+        $('#smallmodal2').on('show.bs.modal', function (e) {
+            var id = $(e.relatedTarget).data("id");
+            var des = $(e.relatedTarget).data("des");
+            $("#itemide").val(id);
+            $("#itemdese").val(des);
+            $("#msg2").html("");
+        });
+
+        $("#submit_modify").on("click", function(){
+            var id = $("#itemide").val();
+            var des = $("#itemdese").val();
+
+            $.ajax({
+                url:"{:url('index/admindefault/editScheduleItem')}",
+                type:"POST",
+                data:{"id":id,"des":des},
+                dataType: "json",
+                success: function (data) {
+                    console.log(data);
+                    // if(data.code == 1){
+                    //     $("#msg2").html("<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"
+                    //         + data.msg + "</p>");
+                    //     setTimeout("location.href='"+data.url+"'",1000);
+                    // }else{
+                    //     $("#msg2").html("<p class='color-red'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"
+                    //         + data.msg + "</p>");
+                    // }
+                    alert(data.msg);
+                    window.location.reload();
+                }
+            })
+        });
+        $('#smallmodal3').on('show.bs.modal', function (e) {
+            var id = $(e.relatedTarget).data("id");
+            $("#id").val(id);
+            $("#msg3").html("");
+        });
+
+        $("#submit_delete").on("click", function(){
+            var id = $("#id").val();
+            console.log(id);
+            $.ajax({
+                url:"{:url('index/admindefault/deletescheduleitem')}",
+                type:"POST",
+                data:{"id":id},
+                dataType: "json",
+                success: function (data) {
+                    console.log(data);
+                    // if(data.code == 1){
+                    //     $("#msg3").html("<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"
+                    //         + data.msg + "</p>");
+                    //     setTimeout("location.href='"+data.url+"'",1000);
+                    // }else{
+                    //     $("#msg3").html("<p class='color-red'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"
+                    //         + data.msg + "</p>");
+                    // }
+                    alert(data.msg);
+                    window.location.reload();
+                }
+            })
+        });
+
+
+        $("#submit_sure").click(function(){
+
+            window.location.reload();
+        });
+        //显示消息modal,信息设为msg
+        function hintShow(msg){
+            $(document).ready(function() {
+                $('#smallmodal4').modal({
+                    backdrop: 'static',
+                    keyboard: false,
+                    show: true
+                });
+            });
+        }
+    </script>
+</body>
+</html>
